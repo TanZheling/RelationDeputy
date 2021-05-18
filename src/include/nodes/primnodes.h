@@ -183,6 +183,32 @@ typedef struct Var
 } Var;
 
 /*
+*the var node in a switching expr
+*/
+typedef struct DeputyVar
+{
+	Expr 		xpr;
+	Index		varno;			/* index of this deputyvar's relation in the range
+								 * table, or INNER_VAR/OUTER_VAR/INDEX_VAR */
+	AttrNumber	varattno;		/* attribute number of this var, or zero for
+								 * all attrs ("whole-row Var") */
+	Oid			vartype;		/* pg_type OID for the type of this var */
+	int32		vartypmod;		/* pg_attribute typmod value */
+	Index		varlevelsup;	/* for subquery variables referencing outer
+									 * relations; 0 in a normal var, >0 means N
+									 * levels up */
+
+	List 		*path;			/*list of ClassAttr*/
+	
+	bool 		isCalculated; 	/*Is the deputyvar calculated by others */
+	Datum		data;
+	bool 		isNull;
+	List 		*deputyVarList; /*the list of deputyvar which come from the same source*/
+}DeputyVar;
+
+
+
+/*
  * Const
  *
  * Note: for varlena data types, we make a rule that a Const node's value

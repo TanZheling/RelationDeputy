@@ -218,6 +218,11 @@ ExecInitNode(Plan *node, EState *estate, int eflags)
 													 estate, eflags);
 			break;
 
+		case T_DeputyScan:
+			result = (PlanState *) ExecInitDeputyScan((DeputyScan *) node,
+														 estate, eflags);
+			break;
+
 		case T_IndexOnlyScan:
 			result = (PlanState *) ExecInitIndexOnlyScan((IndexOnlyScan *) node,
 														 estate, eflags);
