@@ -1365,6 +1365,16 @@ typedef struct SampleScanState
 	bool		done;			/* exhausted all tuples? */
 } SampleScanState;
 
+typedef struct DeputyScanState
+{
+	ScanState ss;
+	Relation catalogrel;
+	HeapTupleData pg_Tuple;
+	SysScanDesc mappingScanDesc;
+	ScanKey scankey;
+	List *realqual;
+}DeputyScanState;
+
 /*
  * These structs store information about index quals that don't have simple
  * constant right-hand sides.  See comments for ExecIndexBuildScanKeys()

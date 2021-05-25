@@ -55,6 +55,7 @@ typedef enum NodeTag
 	T_SeqScan,
 	T_SampleScan,
 	T_IndexScan,
+	T_DeputyScan,     //
 	T_IndexOnlyScan,
 	T_BitmapIndexScan,
 	T_BitmapHeapScan,

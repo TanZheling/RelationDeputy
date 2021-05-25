@@ -407,6 +407,14 @@ typedef struct IndexScan
 	ScanDirection indexorderdir;	/* forward or backward or don't care */
 } IndexScan;
 
+typedef struct DeputyScan
+{
+	Scan 		scan;
+	List 		*realqual;
+	DeputyScanState	*deputystate; 	
+}DeputyScan;
+
+
 /* ----------------
  *		index-only scan node
  *
